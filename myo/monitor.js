@@ -32,8 +32,11 @@ function normalize(arr,norm){
        		arr[k] = (arr[k]+norm)/(2*norm);
      });
 }
-module.exports = function(nnet, valueChangeCB){
+module.exports = function(nnet, valueChangeCB,callibool){
 	net = nnet;
+	if(!callibool){
+		Myo.connect("com.sitepoint.myoarmbandcontroller");	
+	}
 	startMonitor();
 	changeCall = valueChangeCB;
 }

@@ -1,5 +1,6 @@
 var prompts = require('./prompts');
 var nets = [];
+var callibools = [];
 prompts.callibrate(function(r){
 	var callibrations = [
 		require('./myo/getNet'),
@@ -16,6 +17,7 @@ prompts.callibrate(function(r){
 				i++;
 				next();
 			},calibrate || all)
+			callibools[i] = calibrate || all;
 		} else {
 			monitor()
 		}			
@@ -38,7 +40,7 @@ function monitor(){
 		var all = r.indexOf(monitors.length +'') !== -1;
 		for(var i = 0; i < monitors.length; i++){
 			if(all || r.indexOf(i+'') !== -1){
-				monitors[i](nets[i],cbs[i]);
+				monitors[i](nets[i],cbs[i],callibools[i]);
 			}
 		}
 	});
